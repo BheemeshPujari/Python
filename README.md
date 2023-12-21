@@ -156,7 +156,7 @@ A Bool is a data type that can have a value True or False.
 | not 4 < 8             | False | `not` - Flips the Bool Value                 |
 
 ### Strings
-String is a data type which is immutable ordered sequence of characters
+String is a data type which is an immutable ordered sequence of characters
 Strings in Python are represented as the variable type `str`. You can define a string with either double quotes (`"`) or single quotes (`'`). If the string itself contains one of these quote characters, you can use the other type of quote to define the string.
 ```python
 print(len("arjun_krishna"))
@@ -182,7 +182,7 @@ print(first_word + second_word)
 -->
 ```
 
-2.Concatenation with Space
+2. Concatenation with Space
 ```python
 print(first_word + ' ' + second_word)
 <!-- Output: Happy world
@@ -197,7 +197,7 @@ print(first_word * 5)
 ```
 
 4. Length 
-len() is a built-in function that returns the length of the object.  
+len() is a built-in function that returns the object's length.  
 The length of a string is the number of characters in the string. This will always be an integer.
 len only works on a "sequence (such as a string, bytes, tuple, list, or range) or a collection (such as a dictionary, set, or frozen set),
 ```python
@@ -216,3 +216,126 @@ print(first_word[-1])
 <!--Output: y
 -->
 ```
+# String Methods in Python
+
+In Python, methods are functions that are associated with a specific data type and are called using dot notation. They operate on the data of that type and can take additional arguments. Methods are available for various data types, and here we'll focus on string methods.
+
+## Common String Methods
+
+
+The `islower()` method checks if all the characters in a string are lowercase.
+
+#### islower()
+```python
+my_string = "Rama"
+print(my_string.islower())
+# Output: False
+```
+
+#### count(substring)
+```python
+my_string = "messi ronaldo swift ronaldo"
+print(my_string.count('ronaldo'))
+# Output: 2
+```
+
+#### find(substring)
+```python
+my_string = "rama"
+print(my_string.find('am'))
+# Output: 1
+```
+#### The format() String Method
+
+##### Example 1
+```python
+print("Krishna has {} cards".format(13))
+# Output: Krishna has 13balloons
+```
+
+##### Example 2
+```python
+sport = "football"
+action = "watch"
+print("Does your son {} {}?".format(action,sport))
+# Output: Does your son watch football?
+```
+
+##### Example 3
+```python
+maria_string = "arjun loves {} and {}"
+print(maria_string.format("math", "cinema"))
+# Output: arjun loves math and cinema
+```
+## String Splitting in Python
+
+### The `split()` Method
+
+The `split()` method in Python is used to split a string into a list of substrings. It takes two optional arguments: `sep` (separator) and `maxsplit`.
+
+### Example:
+
+```python
+# Example String
+sentence = "The quick brown fox jumps over the lazy dog."
+```
+##### Basic split (default separator is whitespace)
+```python
+word_list = sentence.split()
+print(word_list)
+# Output: ['The', 'quick', 'brown', 'fox', 'jumps', 'over', 'the', 'lazy', 'dog.']
+```
+
+##### Split with a specific separator and maxsplit  
+Here's how the splits occur:
+'The' (first word before the first space)
+'quick' (second word after the first space)
+'brown' (third word after the second space)
+'Fox jumps over the lazy dog.' (the remaining part after the third space)
+```python
+phrase_list = sentence.split(' ', 3)
+print(phrase_list)
+# Output: ['The', 'quick', 'brown', 'fox jumps over the lazy dog.']
+```
+
+##### Split using period as a separator
+The split() method identifies the period as the separator and creates substrings wherever it encounters a period. Therefore, each occurrence of a period in the original string results in a split.  
+So, wherever a full stop occurs in the original string, a split happens, and the resulting list contains the segments between those full stops.
+```python
+sentence_parts = sentence.split('.')
+print(sentence_parts)
+# Output: ['The quick brown fox jumps over the lazy dog', '']
+```
+##### with no separators but having a maxsplit argument 
+```Python
+wordsplit = sentence.split(None, 3)
+print(wordsplit)
+# Output :['The', 'quick', 'brown', 'fox jumps over the lazy dog.']
+```
+### Common String Methods
+
+| Method          | Description                                                                                                    | Example                                           |
+|-----------------|----------------------------------------------------------------------------------------------------------------|---------------------------------------------------|
+| `capitalize()`  | Returns a copy of the string with its first character capitalized and the rest lowercase.                      | `'hello'.capitalize()` => `'Hello'`                |
+| `casefold()`    | Returns a casefolded version of the string, suitable for case-insensitive comparisons.                         | `'Hello'.casefold()` => `'hello'`                  |
+| `count(sub)`    | Returns the number of occurrences of a substring in the string.                                                 | `'apple'.count('p')` => `2`                        |
+| `endswith(suffix)` | Checks if the string ends with a specified suffix and returns `True` or `False`.                                | `'world'.endswith('ld')` => `True`                 |
+| `find(sub)`     | Returns the lowest index of the substring if found, -1 otherwise.                                               | `'hello'.find('lo')` => `3`                        |
+| `rfind(sub)`    | Returns the highest index of the substring if found, -1 otherwise.                                              | 'hello'.rfind('lo') => 3                           |
+| `isalnum()`     | Returns `True` if all characters in the string are alphanumeric (letters or numbers), `False` otherwise.       | `'abc123'.isalnum()` => `True`                     |
+| `isalpha()`     | Returns `True` if all characters in the string are alphabetic (letters), `False` otherwise.                    | `'abc'.isalpha()` => `True`                        |
+| `isdigit()`     | Returns `True` if all characters in the string are digits, `False` otherwise.                                  | `'123'.isdigit()` => `True`                        |
+| `islower()`     | Returns `True` if all cased characters in the string are lowercase, `False` otherwise.                         | `'hello'.islower()` => `True`                      |
+| `isupper()`     | Returns `True` if all cased characters in the string are uppercase, `False` otherwise.                         | `'HELLO'.isupper()` => `True`                      |
+| `lower()`       | Returns a copy of the string with all case characters converted to lowercase.                                 | `'Hello'.lower()` => `'hello'`                    |
+| `upper()`       | Returns a copy of the string with all case characters converted to uppercase.                                 | `'hello'.upper()` => `'HELLO'`                    |
+| `replace(old, new)` | Returns a copy of the string with occurrences of substring `old` replaced with `new`.                          | `'apple'.replace('p', 'b')` => `'abble'`           |
+| `split(separator)` | Splits the string into a list of substrings using the specified separator and returns the list.                | `'apple, orange,banana'.split(',')` => `['apple', 'orange', 'banana']` |
+| `startswith(prefix)` | Checks if the string starts with a specified prefix and returns `True` or `False`.                              | `'hello'.startswith('he')` => `True`               |
+| `strip()`       | Returns a copy of the string with leading and trailing whitespace removed.                                     | `'   hello   '.strip()` => `'hello'`               |
+| `format(args)`  | Formats the string by replacing placeholders with values.                                                      | `"{} has {} apples".format('John', 3)` => `'John has 3 apples'` |
+
+
+###  * floats have the is_integer() method which strings don't have.
+###  * \n is a special sequence of characters that causes a line break (a new line).
+
