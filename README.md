@@ -199,6 +199,7 @@ print(first_word * 5)
 4. Length 
 len() is a built-in function that returns the length of the object.  
 The length of a string is the number of characters in the string. This will always be an integer.
+len only works on a "sequence (such as a string, bytes, tuple, list, or range) or a collection (such as a dictionary, set, or frozen set),
 ```python
 print(len(first_word))
 <!--Output: 5
