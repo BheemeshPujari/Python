@@ -216,6 +216,12 @@ print(first_word[-1])
 <!--Output: y
 -->
 ```
+6. String Slicing 
+```python
+hello_world = "Hello World"
+print(hello_world[6:9])
+# output: Wor
+```
 # String Methods in Python
 
 In Python, methods are functions that are associated with a specific data type and are called using dot notation. They operate on the data of that type and can take additional arguments. Methods are available for various data types, and here we'll focus on string methods.
@@ -339,3 +345,551 @@ print(wordsplit)
 ###  * floats have the is_integer() method which strings don't have.
 ###  * \n is a special sequence of characters that causes a line break (a new line).
 
+## Data Structures
+
+### 1. Lists and Membership Operators.
+ A List is a data structure in Python that is a mutable ordered sequence of elements.
+ A List is defined in square brackets and always holds other data which are separated by commas, And this data could be a mix of any other data type.  
+In Python, a list is a versatile data structure that can store a collection of items. Each item in a list can be of a different data type, allowing flexibility in handling various types of information.
+
+```python
+# Defining a List
+list1 = ["month", "December", 3, 6.46, False]
+```
+
+#### Getting the Length of the List
+The len() function is used to find the length of the list, which is the number of elements it contains.
+```python
+print("Length of the List:", len(list1))
+```
+
+#### Accessing Elements in the List
+List indexing starts from 0, so list1[0] accesses the first element, and list1[-1] accesses the last element.  
+```python
+print("First Element:", list1[0])    # Output: month
+print("Last Element:", list1[-1])    # Output: False
+```
+
+#### Attempting to Access an Index Beyond List Length
+# This will result in an IndexError
+```python
+print(list1[len(list1)])  # output: IndexError: list index out of range 
+```
+#### Accessing the Last Element Safely
+Attempting to access an index beyond the length of the list (list1[len(list1)]) will result in an index error. To avoid this, you can use list1[len(list1)-1] to safely access the last element.
+```python
+print("Last Element (Safe):", list1[len(list1)-1])
+```
+*** Lists are similar to strings, both support the len() function, slicing and indexing.  
+length of the string is the number of characters it holds and length of a list is the number of elements it holds. And Zero indexing is supported in both.  
+And also both(lists and strings) follow membership Operators.  
+1) in: evaluates if the object on the left side is included in the object on the right side.
+2) not in: evaluates if the object on the left side is not included in the object on the right side.
+
+
+#### Slicing of List 
+ 1. The [:] notation represents the entire list, so list1[:] includes all elements of the list.
+```python
+print(list1[:] ) # output :['month', 'December', 3, 6.46, False]
+```
+2. using [:3] retrieves elements from the beginning up to (but not including) the element at index 3.
+```python
+print(list1[:3]) # output : ['month', 'December', 3]
+```
+3.list1[3:] retrieves elements starting from index 3 to the end of the list.
+```python
+print(list1[3:]) # output :[6.46, False]
+```
+4. Slicing with [1:4] includes elements from index 1 up to (but not including) index 4.
+```python
+print(list1[1:4]) # output :['December', 3, 6.46]
+```
+#### Membership Operators.
+1. The in operator evaluates if an element exists within a string or list, returning True if it does.
+```python
+fruits = ['apple', 'banana', 'orange', 'grape', 'kiwi']
+# Check if an element exists in a list
+print('banana' in fruits)  # Output: True
+
+# Check if an element does not exist in a list
+print('watermelon' not in fruits)  # Output: True
+```
+2. The not in operator evaluates if an element does not exist within a string or list, returning True if it is not present.
+```python
+sentence = 'Python programming is fun and powerful'
+# Check if a substring exists in a string
+print('programming' in sentence)  # Output: True
+
+# Check if a substring does not exist in a string
+print('Java' not in sentence)  # Output: True
+```
+Strings are sequences of letters, while lists can be any type of object. The Main difference between strings and lists is strings are immutable while lists are mutable.  
+
+Mutability: Lists are mutable (can be changed), while strings are immutable (cannot be changed after creation).  
+Order is about whether the position of an element in the object can be used to access the element.
+Order: Both strings and lists are ordered, meaning the position of an element can be used to access it. Both strings and Lists are ordered, which is why indexing works for them.  
+
+#### Mutable Example: Lists
+```python
+shopping_list = ["apple", "banana", "cherry"]
+shopping_list[1] = "orange"
+print(shopping_list)
+# Output: ["apple", "orange", "cherry"]
+
+Example 2
+numbers = [1, 2, 3, 4, 5]
+original_id = id(numbers)  # Get the memory address of the original list
+numbers[0] = 10
+modified_id = id(numbers)  # Get the memory address after modification
+print(original_id == modified_id)  # True (Same object)
+
+```
+
+#### Immutable Example: Strings
+```python
+greeting = "pay"
+# The line below will result in an error
+# greeting[0] = 'b'
+# Error: 'str' object does not support item assignment
+
+Example 2
+greeting = "hello"
+original_id = id(greeting)  # Get the memory address of the original string
+# Concatenating to create a new string (seemingly modifying)
+greeting += " world"
+modified_id = id(greeting)  # Get the memory address after modification
+print(original_id == modified_id)  # False (New object created)
+```
+
+# Creating a new string instead
+```python
+greeting = "bay"
+print(greeting)
+# Output: bay
+```
+### List Methods
+1. len() returns how many elements are in a list.
+```python
+numbers = [1, 5, 2, 8, 3]
+length = len(numbers)
+print(f"Length of the list: {length}")
+# Output: Length of the list: 5
+```
+
+2. max() returns the greatest element of the list. The maximum element in a list of numbers is the largest number.
+```python
+max_value = max(numbers)
+print(f"Maximum value in the list: {max_value}")
+
+# Output: Maximum value in the list: 8
+```
+
+3. min() returns the smallest element in a list. min is the opposite of max, which returns the largest element in a list.
+```python
+min_value = min(numbers)
+print(f"Minimum value in the list: {min_value}")
+
+# Output: Minimum value in the list: 1
+```
+4. sorted() returns a copy of a list in order from smallest to largest. Note that for string objects, sorted smallest to largest means sorting in alphabetical order.
+```python
+sorted_numbers = sorted(numbers)
+print(f"Sorted list: {sorted_numbers}")
+
+# Output: Sorted list: [1, 2, 3, 5, 8]
+```
+The max(), min(), and sorted() functions are undefined for lists that contain elements from different, incomparable types. It would raise a TypeError in such cases.
+
+
+5. join() is a string method that takes a list of strings as an argument and returns a string consisting of the list elements joined by a separator string.
+   
+It is important to remember to separate each of the items in the list you are joining with a comma (,). Forgetting to do so will not trigger an error, but will also give you unexpected results.
+```python
+#Example1
+new_str = ", ".join(["apple", "banana", "orange", "grape"])
+print(new_str)
+
+# Output: apple, banana, orange, grape
+
+# Example 2
+sentence = " ".join(["The", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"])
+print(sentence)
+
+# Output: The quick brown fox jumps over the lazy dog
+```
+
+6. append() A helpful method called append adds an element to the end of a list.
+```python
+# Example
+fruits = ['apple', 'banana', 'orange']
+fruits.append('kiwi')
+print(fruits)
+
+# Output: ['apple', 'banana', 'orange', 'kiwi']
+```
+A data type is just a type that classifies data. This can include primitive (basic) data types like integers, booleans, and strings, as well as data structures, such as lists.
+
+Data structures are containers that organize and group data types together in different ways. For example, some of the elements that a list can contain are integers, strings, and even other lists!
+
+### Tuples
+A tuple is a data structure in Python that is an immutable ordered sequence of elements, they are often used to store related pieces of information.  
+ 
+1. Optional Parenthesis
+In Python, you can define a tuple with or without parentheses. The parentheses are optional, and programmers often omit them if their presence doesn't improve code clarity. 
+```python
+# With Parentheses
+coordinates_with_parentheses = (35.6895, 139.6917)
+print(coordinates_with_parentheses)
+print(type(coordinates_with_parentheses))
+# output : (35.6895, 139.6917)
+# output : <class 'tuple'>
+# Without Parentheses (Optional)
+coordinates_without_parentheses = 35.6895, 139.6917
+print(coordinates_without_parentheses)
+print(type(coordinates_without_parentheses))
+# output:(35.6895, 139.6917)
+# output: <class 'tuple'>
+```
+2. Tuple Unpacking 
+Tuple unpacking allows you to assign the values of a tuple to multiple variables in a single line. In this example, the values (52, 40, 100) are unpacked into length, width, and height.
+```python
+# Tuple Unpacking Example
+box_dimensions = 52,66, 95
+length, width, height = box_dimensions
+print("The dimensions are {} x {} x {}".format(length, width, height))
+# output : The dimensions are 52 x 66 x 95
+```
+3. Immutable
+Attempting to Change a Tuple (Results in an Error)
+```python
+coordinates = (35.6895, 139.6917)
+# This line would raise an error
+coordinates[0] = 40.7128
+# output: 'tuple' object does not support item assignment
+```
+### Sets
+A set is a mutable, unordered collection of unique elements. You can create a set from a list to quickly remove duplicates. 
+1. creating a set
+```python
+# Creating a Set
+numbers = [99, 100, 1, 3, 4, 99, 100]
+unique_nums = set(numbers)
+print(unique_nums)
+# Output: {1, 3, 99, 100, 4}
+```
+2. The `in` operator checks if an element exists in the set.
+```python
+fruits = {"apple", "banana", "orange", "grapefruit"}
+# Check for Element
+print("mango" in fruits)  # Output: False
+```
+3. The `add` method adds a new element to the set.
+```python
+fruits = {"apple", "banana", "orange", "grapefruit"}
+fruits.add("mango")
+print(fruits)
+# Output: {'grapefruit', 'orange', 'mango', 'banana', 'apple'}
+```
+4. The `remove` method removes a specific element from the set.
+```python
+fruits = {"apple", "banana", "orange", "grapefruit"}
+fruits.remove("banana")
+print(fruits)
+# Output: {'grapefruit', 'orange', 'mango', 'apple'}
+```
+5. The `discard` method removes an element if it exists, but does not raise an error if it doesn't.
+```python
+fruits = {"apple", "banana", "orange", "grapefruit"}
+fruits.discard("kiwi")
+print(fruits)
+# Output: {'grapefruit', 'orange', 'mango', 'apple'}
+```
+6. The pop() method in Python removes and returns an arbitrary (random) element from the set.
+```python
+fruits = {"apple", "banana", "orange", "grapefruit"}
+print(fruits.pop())  # remove a random element
+print(fruits)
+# output :{"apple, "orange", "grapefruit"}
+```
+7. The `clear` method removes all elements, making the set empty.
+```python
+fruits = {"apple", "banana", "orange", "grapefruit"}
+fruits.clear()
+print(fruits)
+# Output: set()
+```
+8. Set operations
+Sets support mathematical operations like union, intersection, and difference, making them efficient for such operations.
+```python
+# Set Mathematical Operations
+set1 = set(range(1000))
+set2 = set(range(500, 1500))
+
+# Union
+union_set = set1.union(set2)
+
+# Intersection
+intersection_set = set1.intersection(set2)
+
+# Difference
+difference_set = set1.difference(set2)
+```
+ ### set operations are significantly faster than their list counterparts, especially for union, intersection, and difference operations.  
+ 
+
+ ###  Dictionaries and Identity Operators
+A dictionary is a mutable data type that stores mappings of unique keys to values. In Python, dictionaries use key-value pairs to organize data. Each key must be of an immutable type (e.g., strings, integers, or tuples), and keys within a dictionary do not have to share the same type.
+1. Example
+```python
+# Creating a dictionary of countries and their capitals
+countries_capitals = {"USA": "Washington, D.C.", "France": "Paris", "Japan": "Tokyo"}
+
+# Accessing values using square brackets
+print(countries_capitals["France"])  # Output: Paris
+
+# Adding a new country and its capital to the dictionary
+countries_capitals["Australia"] = "Canberra"
+
+# Printing the updated dictionary
+print(countries_capitals)
+# output: {'USA': 'Washington, D.C.', 'France': 'Paris', 'Japan': 'Tokyo', 'Australia': 'Canberra'}
+```
+2. If you try to look up a key that is not in the dictionary using square brackets, it will raise a KeyError. To avoid this, you can use the get() method, which returns None (or a default value) if the key isn't found.
+```python
+print(countries_capitals.get("india"))     # Output: None
+```
+3. Checking if a key is in the dictionary
+```python
+print("india" in countries_capitals)        # Output: False
+```
+4. Identity Operators
+Identity operators (is and is not) evaluate whether both sides have the same or different identities, respectively.
+The is operator evaluates to True if both operands refer to the same object in memory. It checks for identity, meaning it checks if the objects are stored at the same memory address.
+The is not operator evaluates to True if the operands do not refer to the same object in memory.
+```python
+countries_capitals = {"USA": "Washington, D.C.", "France": "Paris", "Japan": "Tokyo"}
+n=countries_capitals.get("india")
+print(n is None)      # Output: True (key not found, get returns None)
+print(n is not None)  # Output: False (opposite of n is None)
+
+```
+5. Handling Absent Key with get():
+get() allows specifying a default value to be returned if the key is not found:
+```python
+# Specifying a default value with get()
+result_with_default = countries_capitals.get('Dubai', 'There\'s no such element!')
+print(result_with_default)  # Output: "There's no such element!"
+```
+```python
+# Creating a dictionary of student records
+student_records = {
+    'Alice': {
+        'age': 22,
+        'major': 'Chemistry',
+        'grades': [90, 88, 92]
+    },
+    'Bob': {
+        'age': 20,
+        'major': 'Physics',
+        'grades': [85, 89, 94]
+    }
+}
+
+# Adding a new student
+student_records['Charlie'] = {
+    'age': 21,
+    'major': 'Biology',
+    'grades': [78, 92, 87]
+}
+
+# Adding a grade for an existing student
+student_records['Alice']['grades'].append(95)
+
+# Printing the updated dictionary
+print(student_records)
+# Output:
+{
+    'Alice': {
+        'age': 22,
+        'major': 'Chemistry',
+        'grades': [90, 88, 92, 95]
+    },
+    'Bob': {
+        'age': 20,
+        'major': 'Physics',
+        'grades': [85, 89, 94]
+    },
+    'Charlie': {
+        'age': 21,
+        'major': 'Biology',
+        'grades': [78, 92, 87]
+    }
+}
+```
+### Control Flow
+Control flow in Python refers to the order in which the lines of code are executed. It allows the programmer to dictate the execution flow based on certain conditions or loops.   
+
+### if statement 
+An if statement in Python is a conditional statement that allows you to control the flow of your code based on whether a given condition is true or false.
+```python
+# Check if the user's age is below 18
+user_age = 20
+
+if user_age < 18:
+    print("Access denied. You must be 18 or older.")
+else:
+    print("Welcome! You have access to the content.")
+# output: Welcome! You have access to the content.
+```
+#### How the if statement works
+1. Keyword: An if statement starts with the keyword if, followed by the condition to be checked, in this case, user_age < 18.
+  
+2. Colon: The condition is followed by a colon: The colon signifies the beginning of a code block that will be executed if the condition is true.
+  
+3. Indented Block: The indented code block under the if statement is executed only if the condition is true. In the example, it prints a message denying access.
+ 
+4. Else Block: Optionally, you can include an else block that contains code to be executed if the condition in the if statement is false. In this example, it prints a welcome message.
+
+### if,elif, else
+the if, elif (else if), and else statements are used to introduce decision-making logic into your code.
+```python
+# Check the weather and provide recommendations
+weather = 'rainy'
+
+if weather == 'sunny':
+    print('Enjoy the sunshine!')
+elif weather == 'rainy':
+    print('Grab an umbrella!')
+elif weather == 'snowy':
+    print('Bundle up for the snow!')
+else:
+    print('Check the weather forecast for today.')
+```
+#### How If, Elif, Else Statements Work
+1. if Statement: An if statement checks the first condition. If it is true, the code inside the corresponding block is executed, and the entire if-elif-else structure is exited.  
+2. elif Statement: If the condition in the if statement is false, the next elif (else if) statement is checked. If its condition is true, the code inside the corresponding block is executed, and the structure is exited.
+3. else Statement: If none of the conditions in the if and elif statements are true, the else statement is executed. The else block is optional and provides a default action if no other conditions are met.
+4. Colon and Indentation: Like with the if statement, each elif and else statement ends with a colon: and is followed by an indented block of code. The indentation is crucial in Python to define the scope of the code blocks.
+
+### Boolean Expressions for conditions
+```python
+# Evaluate weather conditions
+is_raining = True
+is_sunny = False
+
+if is_raining and is_sunny:
+    print("Is there a rainbow?")
+elif is_raining and not is_sunny:
+    print("It's just raining.")
+elif not is_raining and is_sunny:
+    print("Enjoy the sunshine!")
+else:
+    print("No rain or sunshine today.")
+```
+1. Avoid using True or False as conditions
+```python
+# Bad Example 1
+if True:
+    print("This indented code will always get run.")
+
+# Bad Example 2
+if is_cold or not is_cold:
+    print("This indented code will always get run.")
+```
+2. Carefully use logical operators
+```python
+# Bad Example
+if weather == "snow" or "rain":
+    print("Wear boots!")
+```
+3. Don't compare a boolean variable with == True or == False
+```python
+# Bad Example
+if is_cold == True:
+    print("The weather is cold.")
+
+# Good Example
+if is_cold:
+    print("The weather is cold.")
+```
+4. For checking if a boolean is False, use the not operator
+```python
+if not is_warm:
+    print("The weather is not warm.")
+```
+### Truth value testing
+In Python, when using a non-boolean object as a condition in an if statement, Python checks for its truth value to determine whether or not to execute the indented code. By default, the truth value of an object in Python is considered True unless specified as False in the documentation.
+
+Here are some built-in objects in Python that are considered False:
+
+1. Constants defined to be false: None and False
+2. Zero of any numeric type: 0, 0.0, 0j, Decimal(0), Fraction(0, 1)
+3. Empty sequences and collections: "", (), [], {}, set(), range(0)
+```python
+# Using truth value testing with a non-boolean object
+unread_messages = 0
+
+# Check the truth value of unread_messages
+if not unread_messages:
+    print("You have no unread messages.")
+else:
+    print("You have unread messages.")
+# Output and explanation: In this example, the variable unread_messages is assigned the value 0, which is considered False in a truth value test. Therefore, the indented code inside the if block is executed, printing "You have no unread messages."
+```
+### For and While Loops
+An object that can return one of its elements at a time. This can include sequence types, such as strings, lists, and tuples, as well as non-sequence types, such as dictionaries and files.
+
+```python
+ipl_teams = ["csk", "rr", "rcb"]
+for teams in ipl_teams:
+  print(teams)
+# output:
+csk
+rr
+rcb
+```
+#### Components of a for Loop
+1. Loop Header:
+Starts with the for keyword.
+Specifies the iteration variable (teams) and the iterable (ipl_teams).
+Ends with a colon :.
+2. Loop Body:
+Indented block of code executed in each iteration.
+3. Iteration Process:
+The iteration variable takes the value of the next element in the iterable (ipl_teams).
+The loop continues until all elements in the iterable have been processed.
+4. Output:
+
+#### Using range() Function with for Loops  
+range(start=0, stop, step=1)  
+start: The first number of the sequence (default is 0).  
+stop: One more than the last number of the sequence (must be specified).  
+step: The difference between each number in the sequence (default is 1).  
+
+```python
+for i in range(3):
+    print(f"Hello, iteration {i + 1}!")
+# output:
+Hello, iteration 1!
+Hello, iteration 2!
+Hello, iteration 3!
+```
+#### creating a new list
+```python
+ipl_teams = ['csk','rr','rcb', 'mi']
+capitalized_teamss = []
+
+for teams in ipl_teams:
+    capitalized_teamss.append(teams.title())
+print(capitalized_teams)
+# output :['Csk', 'Rr', 'Rcb', 'Mi']
+```
+
+#### Modifying a list in place
+```python
+teams = ['csk','rr','rcb', 'mi']
+for index in range(len(teams)):
+    teams[index] = teams[index].title()
+print(teams)
+# output : ['Csk', 'Rr', 'Rcb', 'Mi']
+```
