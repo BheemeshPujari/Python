@@ -876,7 +876,7 @@ Hello, iteration 3!
 ```
 #### creating a new list
 ```python
-ipl_teams = ['csk','rr','rcb', 'mi']
+ipl_teams = ['csk','rr', 'rcb', 'mi']
 capitalized_teamss = []
 
 for teams in ipl_teams:
@@ -887,9 +887,96 @@ print(capitalized_teams)
 
 #### Modifying a list in place
 ```python
-teams = ['csk','rr','rcb', 'mi']
+teams = ['csk','rr', 'rcb', 'mi']
 for index in range(len(teams)):
     teams[index] = teams[index].title()
 print(teams)
 # output : ['Csk', 'Rr', 'Rcb', 'Mi']
 ```
+### Building Dictionaries
+1. Using the iteration by for loop
+```python
+# Method 1: Using a for loop
+animals = ['dog', 'cat', 'dog', 'fish', 'cat', 'bird', 'dog', 'fish', 'bird', 'cat']
+animal_counter = {}
+
+# Iterate through each animal in the list
+for animal in animals:
+    # Check if the animal is already a key in the dictionary
+    if animal in animal_counter:
+        # If yes, increment the existing count by 1
+        animal_counter[animal] += 1
+    else:
+        # If no, add the animal to the dictionary with a count of 1
+        animal_counter[animal] = 1
+
+# Print the final animal count dictionary
+print("Animal Count (Method 1):", animal_counter)
+# output: Animal Count (Method 1): {'dog': 3, 'cat': 3, 'fish': 2, 'bird': 2}
+```
+2. Using the get() method
+
+ word_counter[word] = word_counter.get(word,0) + 1, since the key 'apple' doesn't yet exist in the dictionary, get() will return the value 0 and word_counter[word] will be set to 1.
+
+Once it encounters a word that already exists in word_counter, the value for that key is incremented by 1. On the second appearance of 'the', the key's value would add 1 again, resulting in 2.
+```python
+# Method 2: Using the get method
+fruits = ['apple', 'orange', 'banana', 'apple', 'banana', 'orange', 'kiwi', 'apple', 'kiwi', 'orange']
+fruit_counter = {}
+
+# Iterate through each fruit in the list
+for fruit in fruits:
+    # Use the get method to fetch the current count or default to 0
+    fruit_counter[fruit] = fruit_counter.get(fruit, 0) + 1
+
+# Print the final fruit count dictionary
+print("Fruit Count (Method 2):", fruit_counter)
+# output: Fruit Count (Method 2): {'apple': 3, 'orange': 3, 'banana': 2, 'kiwi': 2}
+```
+### Iterating through Dictionaries 
+When you iterate through a dictionary using a for loop, doing it the normal way, like   
+
+for n in some_dict, will only give you access to the keys in the dictionary - which is what you'd want in some situations.  
+```python
+animals = {'dog': 3, 'cat': 3, 'fish': 2, 'bird': 2}
+for key in animals:
+ print(key)
+# output: dog
+         cat
+         fish
+         bird
+```
+If we wish to iterate through both keys and values, you can use the built-in method items like this:
+```python
+for key, value in animals.items():
+    print("Animal:{},count: {}".format(key, value))
+# output : Animal: dog, count: 3
+           Animal: cat, count: 3
+           Animal: fish, count: 2
+           Animal: bird, count: 2
+```
+### While loops
+1. The first line starts with the while keyword, indicating this is a while loop.
+2. Following that is a condition to be checked. In this example, that's counter <= 5.
+3. The while loop heading always ends with a colon:
+4. Indented after this heading is the body of the while loop. If the condition for the while loop is true, the code lines in the loop's body will be executed.
+5. We then go back to the while heading line, and the condition is evaluated again. This process of checking the condition and then executing the loop repeats until the condition becomes false.
+6. When the condition becomes false, we move on to the line following the body of the loop, which will be unindented.
+```python
+# Initialize a counter
+counter = 1
+
+# Define the condition for the while loop
+while counter <= 5:
+    print(counter)
+    counter += 1  # Increment the counter
+
+# Output:
+# 1
+# 2
+# 3
+# 4
+# 5
+```
+The indented body of the loop should modify at least one variable in the test condition. If the value of the test condition never changes, the result is an infinite loop!
+
