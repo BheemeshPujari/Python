@@ -980,3 +980,39 @@ while counter <= 5:
 ```
 The indented body of the loop should modify at least one variable in the test condition. If the value of the test condition never changes, the result is an infinite loop!
 
+### Zip and Enumerate
+Zip returns an iterator that combines multiple iterables into one sequence of tuples.each tuple contains the elements in that position from all the iterables.
+1. Zipping 
+```python
+ranks = [1,2,3]
+persons = ["arjun","krishna","ram"]
+for rank,person in zip(ranks,persons):
+ print("{}: {}".format(rank,person))
+# output : 1: arjun
+           2: krishna
+           3: ram
+```
+2. unzipping - we can unzip a list into tuples using an asterisk.
+```python
+rank_list = [('arjun', 1), ('krishna', 2), ('ram', 3)]
+ranks, persons = zip(*rank_list)
+print(ranks)
+print(persons)
+print(type(ranks))
+# output :
+('arjun', 'krishna', 'ram')
+(1, 2, 3)
+<class 'tuple'>
+```
+3.Enumerate
+enumerate is a built in function that returns an iterator of tuples containing  indices and values of a list.
+```python
+rank_list = [('arjun', 1), ('krishna', 2), ('ram', 3)]
+for rank in enumerate(rank_list):
+    print(rank)
+# output : (0, ('arjun', 1))
+           (1, ('krishna', 2))
+           (2, ('ram', 3))
+The output are of type tuple
+```
+### List Comprehensions
