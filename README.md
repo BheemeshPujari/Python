@@ -992,7 +992,7 @@ for rank,person in zip(ranks,persons):
            2: krishna
            3: ram
 ```
-2. unzipping - we can unzip a list into tuples using an asterisk.
+2. unzipping - using an asterisk, we can unzip a list into tuples.
 ```python
 rank_list = [('arjun', 1), ('krishna', 2), ('ram', 3)]
 ranks, persons = zip(*rank_list)
@@ -1004,8 +1004,8 @@ print(type(ranks))
 (1, 2, 3)
 <class 'tuple'>
 ```
-3.Enumerate
-enumerate is a built in function that returns an iterator of tuples containing  indices and values of a list.
+3. Enumerate
+enumerate is a built-in function that returns an iterator of tuples containing  indices and values of a list.
 ```python
 rank_list = [('arjun', 1), ('krishna', 2), ('ram', 3)]
 for rank in enumerate(rank_list):
@@ -1013,6 +1013,93 @@ for rank in enumerate(rank_list):
 # output : (0, ('arjun', 1))
            (1, ('krishna', 2))
            (2, ('ram', 3))
-The output are of type tuple
+The output is of type tuple
 ```
 ### List Comprehensions
+
+### Functions
+Functions are useful chunks of code that allow you to encapsulate a task.
+Encapsulation is a task to carry out a whole series of steps with one single command.
+#### Defining functions
+Arguments are the values passed in as inputs to a function.  
+print provides output to the console while return provides the value that you can store and work with code later  
+The function header always starts with the def keyword, which indicates that this is a function definition.  
+Then comes the function name (here, bmi), which follows the same naming conventions as variables.  
+Immediately after the name are parentheses that may include arguments separated by commas (here, mass and heights). Arguments, or parameters, are values that are passed in as inputs when the function is called, and are used in the function body. If a function doesn't take arguments, these parentheses are left empty.  
+The header always ends with a colon:  
+```python
+# Body Mass Index (BMI) is a person's weight in kilograms (or pounds) divided by the square of height in meters (or feet)
+def bmi(mass,height):
+ x = mass/height
+ return x
+
+# We will perform function call
+print(bmi(65,1.5))
+# output: 43.333336
+```
+#### Function Body
+The rest of the function is contained in the body, which is where the function does its work.  
+The body of a function is the code indented after the header line. Here, the two lines assign x and return the x= mass/height.  
+Within this body, we can refer to the argument variables and define new variables, which can only be used within these indented lines.  
+The body will often include a return statement, which is used to send back an output value from the function to the statement that called the function. A return statement consists of the return keyword followed by an expression evaluated to get the output value for the function. If there is no return statement, the function simply returns None.
+
+
+#### Naming Conventions for Functions
+Function names follow the same naming conventions as variables.  
+Only use ordinary letters, numbers and underscores in your function names. They can’t have spaces and need to start with a letter or underscore.  
+You can’t use reserved words or built-in identifiers that have important purposes in Python, which you’ll learn about throughout this course.
+
+#### default arguments
+We can add default arguments in a function to have default values for parameters that are unspecified in a function call.  
+Here height is to 1.7,if that parameter is omitted in a function call. If we call bmi(65), the function will use 65 as mass and 1.7 as the height. However, if we call bmi(65,1.5) the 1.5 will simply overwrite the default value of 1.7.  
+```python
+def bmi(mass,height=1.7):
+ x = mass/height
+ return x
+
+# We will perform function call
+print(bmi(65,1.5))
+# output: 43.333336
+```
+Also notice here we are passing values to our arguments by position. It is possible to pass values in two ways - by position and by name. Each of these function calls are evaluated the same way.  
+```python
+bmi(65, 1.5)  # pass in arguments by position
+bmi(mass=65,height=1.5)# pass in arguments by name
+```
+### Variable scope
+Variable scope refers to which parts of a program a variable can be referenced, or used, from. 
+It's important to consider scope when using variables in functions. If a variable is created inside a function, it can only be used within that function. Accessing it outside that function is not possible.  
+Variables defined outside functions,is said to have a global scope.  
+we can still access the value of the global variable `word` within this function. However, the value of a global variable can not be __modified__ inside the function. If you want to modify that variable's value inside this function, it should be passed in as an argument.  
+
+
+### Doc string
+A type of comment used to explain the purpose of function and how it should be used. Docstrings are surrounded by triple quotes. 
+
+### Lamda expressions
+we can use lamda expression to create anonymous function.that is these functions do not have a name.  
+Components of a Lambda Function
+1.The lambda keyword is used to indicate that this is a lambda expression.  
+2.Following lambda are one or more arguments for the anonymous function separated by commas, followed by a colon :. Similar to functions, the way the arguments are named in a lambda expression is arbitrary.
+3.Last is an expression that is evaluated and returned in this function. This is a lot like an expression you might see as a return statement in a function.  
+4.With this structure, lambda expressions aren’t ideal for complex functions, but can be very useful for short, simple functions.  
+
+With a lambda expression, this function:
+```python
+def multiply(x, y):
+    return x * y
+```
+can be reduced to:
+```python
+multiply = lambda x, y: x * y
+```
+Both of these functions are used in the same way. In either case, we can call multiply like this:
+```python
+multiply(4, 7)
+```
+This returns 28.
+
+
+### scripting
+
+
