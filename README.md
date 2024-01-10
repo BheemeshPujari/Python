@@ -1138,3 +1138,196 @@ except ValueError:
 except KeyboardInterrupt:
     # some code
 ```
+### Handling Errors
+Try Statement: We can use try statements to handle exceptions.
+
+There are four clauses you can use.
+
+1. try: This is the only mandatory clause in a try statement. The code in this block is the first thing that Python runs in a try statement.
+2. except: If Python runs into an exception while running the try block, it will jump to the except block that handles that exception.   
+3. else: If Python runs into no exceptions while running the try block, it will run the code in this block after running the try block.    
+4. finally: Before Python leaves this try statement, it will run the code in this finally block under any conditions, even if it's ending the program.
+5. E.g., if Python ran into an error while running code in the except or else block, this finally block will still be executed before stopping the program.
+
+### Specifying Exceptions
+We can actually specify which error we want to handle in an except block like this:
+
+```python
+try:
+    # some code
+except ValueError:
+    # some code
+```
+Now, it catches the ValueError exception, but not other exceptions. If we want this handler to address more than one type of exception, we can include a parenthesized tuple after the except with the exceptions.  
+```python
+try:
+    # some code
+except (ValueError, KeyboardInterrupt):
+    # some code
+```
+Or, if we want to execute different blocks of code depending on the exception, you can have multiple except blocks.
+```python
+try:
+    # some code
+except ValueError:
+    # some code
+except KeyboardInterrupt:
+    # some code
+ ```
+### Accessing Error Messages
+When you handle an exception, you can still access its error message like this:
+```python
+try:
+    # some code
+except ZeroDivisionError as e:
+   # some code
+   print("ZeroDivisionError occurred: {}".format(e))
+```
+This would print something like this:
+```python
+ZeroDivisionError occurred: integer division or modulo by zero
+```
+So you can still access error messages, even if you handle them to keep your program from crashing!  
+
+If you don't have a specific error you're handling, you can still access the message like this:  
+```python
+try:
+    # some code
+except Exception as e:
+   # some code
+   print("Exception occurred: {}".format(e))
+```
+### Reading and Writing Files
+Reading the File
+
+1. First open the file using the built-in function, open. This requires a string that shows the path to the file. The open function returns a file object, which is a Python object through which Python interacts with the file itself. Here, we assign this object to the variable f.
+2. There are optional parameters you can specify in the open function. One is the mode in which we open the file. Here, we use r or read-only. This is actually the default value for the mode argument.
+3. Use the read method to access the contents from the file object. This read method takes the text contained in a file and puts it into a string. Here, we assign the string returned from this method into the variable file_data.
+4. When finished with the file, use the close method to free up any system resources taken up by the file.
+
+```python
+f = open('my_path/my_file.txt', 'r')
+file_data = f.read()
+# The call to f.read() had no arguments passed to it. This defaults to reading all the remainder of the file from its current position - the whole file. If you pass the read method an integer argument, it will read up to that number of characters, output all of them, and keep the 'window' at that position ready to read on.
+print(file_data)
+f.close()
+```
+
+Writing the File
+1. Open the file in writing ('w') mode. If the file does not exist, Python will create it for you. If you open an existing file in writing mode, any content that it had contained previously will be deleted. If you're interested in adding to an existing file, without deleting its content, you should use the append ('a') mode instead of write.
+
+2. Use the write method to add text to the file.
+3. Close the file when finished.
+   
+```python
+f = open('my_path/my_file.txt', 'w')
+f.write("Hello there!")
+f.close()
+```
+
+With
+Python provides a special syntax that auto-closes a file for you once you're finished using it.  
+```python
+with open('my_path/my_file.txt', 'r') as f:
+    file_data = f.read()
+```
+This with a keyword allows you to open a file, do operations on it, and automatically close it after the indented code is executed, in this case, reading from the file. Now, we don’t have to call f.close()! You can only access the file object, f, within this indented block.  
+
+### Reading Line by Line
+1.\ns in blocks of text are newline characters. The newline character marks the end of a line and tells a program (such as a text editor) to go down to the next line. However, looking at the stream of characters in the file, \n is just another character.  
+2. readline is a useful method! that reads the next line of a file.  
+3. Conveniently, Python will loop over the lines of a file using the syntax for line in file. I can use this to create a list of lines in the file. Because each line still has its newline character attached, I remove this using .strip().
+
+
+```python
+data_file2 = open('camelot.txt','w')
+data_file2.write("We're the knights of the round table We dance whenever we're able")
+data_file2.close()
+```
+```python
+camelot_lines = []
+with open("camelot.txt") as f:
+    for line in f:
+        camelot_lines.append(line.strip())
+
+print(camelot_lines)
+```
+```python
+Outputs:
+
+["We're the knights of the round table", "We dance whenever we're able"]
+```
+### Importing Local Scripts
+We can actually import Python code from other scripts, which is helpful if you are working on a bigger project where you want to organize your code into multiple files and reuse code in those files. If the Python script you want to import is in the same directory as your current script, you just type import followed by the name of the file, without the .py extension.  
+
+```python
+import useful_functions
+```
+
+It's the standard convention for import statements to be written at the top of a Python script, each one on a separate line. This import statement creates a module object called useful_functions. Modules are just Python files that contain definitions and statements. To access objects from an imported module, you need to use dot notation.
+
+```python
+import useful_functions
+useful_functions.add_five([1, 2, 3, 4])
+```
+We can add an alias to an imported module to reference it with a different name.
+
+```python
+import useful_functions as uf
+uf.add_five([1, 2, 3, 4])
+```
+To avoid running executable statements in a script when it's imported as a module in another script, include these lines in an if __name__ == "__main__" block. Or alternatively, include them in a function called main() and call this in the if main block.  
+
+Whenever we run a script like this, Python actually sets a special built-in variable called __name__ for any module. When we run a script, Python recognizes this module as the main program, and sets the __name__ variable for this module to the string "__main__". For any modules that are imported in this script, this built-in __name__ variable is just set to the name of that module. Therefore, the condition if __name__ == "__main__"is just checking whether this module is the main program.  
+
+### The Standard Library
+
+### Techniques for Importing Modules
+
+There are other variants of import statements that are useful in different situations.
+
+1. To import an individual function or class from a module:
+```python
+from module_name import object_name
+```
+2. To import multiple individual objects from a module:
+```python
+from module_name import first_object, second_object
+```
+3. To rename a module:
+```python
+import module_name as new_name
+```
+4. To import an object from a module and rename it:
+```python
+from module_name import object_name as new_name
+```
+5. To import every object individually from a module (DO NOT DO THIS):
+```python
+from module_name import *
+```
+6. If you really want to use all of the objects from a module, use the standard import module_name statement instead and access each of the objects with the dot notation.
+
+```python
+import module_name
+```
+
+### Third Party Libraries
+
+### Using a requirements.textfile
+Larger Python programs might depend on dozens of third-party packages. To make it easier to share these programs, programmers often list a project's dependencies in a file called requirements.txt. This is an example of a requirements.txt file.  
+```python
+beautifulsoup4==4.5.1
+bs4==0.0.1
+pytz==2016.7
+requests==2.11.1
+```
+Each line of the file includes the name of a package and its version number. The version number is optional, but it usually should be included. Libraries can change subtly, or dramatically, between versions, so it's important to use the same library versions that the program's author used when they wrote the program.
+
+You can use pip to install all of a project's dependencies at once by typing 
+```python
+pip install -r requirements.txt 
+```
+in your command line.
+
+### Experimenting with the Interpreter
